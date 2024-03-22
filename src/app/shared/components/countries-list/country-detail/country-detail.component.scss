@@ -1,0 +1,35 @@
+.detail-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  //margin-bottom: 20px;
+  .example-card {
+    max-width: 200px;
+    position: relative;
+
+    .img-card {
+      aspect-ratio: 22 / 12;
+      object-fit: cover;
+    }
+
+    .card-content {
+      h2,
+      h3 {
+        margin: 0;
+      }
+    }
+
+    .card-actions {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      button {
+        .icon {
+          margin: 0;
+          color: red;
+        }
+      }
+    }
+  }
+}
