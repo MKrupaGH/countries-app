@@ -1,1 +1,7 @@
-<p>filter works!</p>
+<mat-form-field>
+  <mat-label>Region</mat-label>
+  <mat-select (selectionChange)="onSelectRegion($event)">
+    <mat-option value=""></mat-option>
+    <mat-option *ngFor="let region of regions" [value]="region">{{ region }}</mat-option>
+  </mat-select>
+</mat-form-field>
