@@ -1,3 +1,10 @@
-<div class="list-layout">
-  <app-country-detail  *ngFor="let country of countries" [country]="country"></app-country-detail>
-</div>
+<ng-container *ngIf="countries$ | async as countries">
+  <div class="list-layout">
+    <app-country-detail *ngFor="let country of countries" [country]="country"></app-country-detail>
+  </div>
+</ng-container>
+<!-- <ng-container *ngIf="countries">
+  <div class="list-layout">
+    <app-country-detail *ngFor="let country of countries" [country]="country"></app-country-detail>
+  </div>
+</ng-container> -->
