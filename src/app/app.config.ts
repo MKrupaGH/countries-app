@@ -9,6 +9,7 @@ import { appReducer } from './store/app.state';
 import { provideEffects } from '@ngrx/effects';
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
+import { CountriesEffects } from './store/countries.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -18,7 +19,6 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     provideHttpClient(withFetch()),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
-    provideEffects(),
+    provideEffects([CountriesEffects]),
   ],
 };
-

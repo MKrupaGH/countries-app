@@ -1,4 +1,5 @@
 <app-header></app-header>
+<app-spinner *ngIf="showLoading | async"></app-spinner>
 <div class="wrapper">
   <router-outlet></router-outlet>
 </div>
