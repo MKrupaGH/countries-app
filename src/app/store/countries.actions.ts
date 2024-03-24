@@ -12,7 +12,7 @@ export const GET_ALL_COUNTRIES_FAIL = '[countries page] get all countries fail';
 export const getAllCountries = createAction(GET_ALL_COUNTRIES);
 export const getAllCountriesSuccess = createAction(
   GET_ALL_COUNTRIES_SUCCESS,
-  props<{ countries: Country[] }>()
+  props<{ countries: Country[]; countriesLength: number }>()
 );
 export const getAllCountriesFail = createAction(
   GET_ALL_COUNTRIES_FAIL,

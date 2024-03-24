@@ -21,7 +21,10 @@ export class CountriesEffects {
         return this.countriesService.getAllCountries().pipe(
           map((countries) => {
             this.store.dispatch(setLoadingSpinner({ status: false }));
-            return Action.getAllCountriesSuccess({ countries });
+            return Action.getAllCountriesSuccess({
+              countries,
+              countriesLength: countries.length,
+            });
           }),
           catchError((err) => {
             this.store.dispatch(setLoadingSpinner({ status: false }));
