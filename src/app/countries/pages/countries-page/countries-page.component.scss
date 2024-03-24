@@ -2,7 +2,7 @@
   height: 100%;
   width: 100%;
   display: grid;
-  grid-template: minmax(50px, 1fr) 8fr minmax(50px, 1fr) / 1fr;
+  grid-template: minmax(50px, 200px) 8fr / 1fr;
   justify-content: center;
   align-items: center;
 }
