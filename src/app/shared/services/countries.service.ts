@@ -10,10 +10,10 @@ import { environment } from '../../../environments/environment.development';
 export class CountriesService {
   constructor(private http: HttpClient) {}
 
-  getAllCountries(): Observable<Country[]> {
+  getAllCountries(status: boolean): Observable<Country[]> {
     return this.http.get<Country[]>(
       environment.countriesUrl +
-        '/independent?status=true&fields=flags,name,capital,region,cca2'
+        `/independent?status=${status}&fields=flags,name,capital,region,cca2`
     );
   }
 }
