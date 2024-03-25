@@ -9,7 +9,10 @@ export const GET_ALL_COUNTRIES_SUCCESS =
   '[countries page] get all countries success';
 export const GET_ALL_COUNTRIES_FAIL = '[countries page] get all countries fail';
 
-export const getAllCountries = createAction(GET_ALL_COUNTRIES);
+export const getAllCountries = createAction(
+  GET_ALL_COUNTRIES,
+  props<{ independent: boolean }>()
+);
 export const getAllCountriesSuccess = createAction(
   GET_ALL_COUNTRIES_SUCCESS,
   props<{ countries: Country[]; countriesLength: number }>()

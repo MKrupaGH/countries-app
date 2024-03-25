@@ -18,7 +18,7 @@ export class CountriesEffects {
     return this.actions$.pipe(
       ofType(Action.getAllCountries),
       exhaustMap((action) => {
-        return this.countriesService.getAllCountries().pipe(
+        return this.countriesService.getAllCountries(action.independent).pipe(
           map((countries) => {
             this.store.dispatch(setLoadingSpinner({ status: false }));
             return Action.getAllCountriesSuccess({
