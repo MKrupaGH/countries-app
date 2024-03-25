@@ -6,6 +6,9 @@ import {
   MatCheckboxModule,
 } from '@angular/material/checkbox';
 import { MatCardModule } from '@angular/material/card';
+import { getAllCountries } from '../../../store/countries.actions';
+import { Store } from '@ngrx/store';
+import { setLoadingSpinner } from '../../../store/shared/shared.actions';
 
 @Component({
   selector: 'app-independent-check',
@@ -15,10 +18,10 @@ import { MatCardModule } from '@angular/material/card';
   styleUrl: './independent-check.component.scss',
 })
 export class IndependentCheckComponent {
-  checked = false;
+  constructor(private store: Store) {}
 
   onCheck(event: MatCheckboxChange) {
-    this.checked = event.checked;
-    console.log(this.checked);
+    this.store.dispatch(getAllCountries({ independent: !event.checked }));
+    this.store.dispatch(setLoadingSpinner({ status: true }));
   }
 }
