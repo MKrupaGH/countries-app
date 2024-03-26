@@ -4,6 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { SearchedService } from './searched.service';
 
 @Component({
   selector: 'app-search',
@@ -21,5 +22,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
   styleUrl: './search.component.scss',
 })
 export class SearchComponent {
-  value = '';
+  constructor(private searchedService: SearchedService) {}
+
+  onChange(search: string) {
+    this.searchedService.searchQuery = search;
+  }
 }
