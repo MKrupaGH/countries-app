@@ -39,12 +39,17 @@ export class CountriesListComponent implements OnInit {
     this.store.dispatch(setLoadingSpinner({ status: true }));
     this.store.dispatch(getAllCountries({ independent: true }));
     this.countries$ = this.store.select(getAllToSearch).pipe(
-      combineLatestWith(this.searchedService.valueChangeSearch),
-      map(([countries, searchQuery]) =>
-        countries.filter((country) =>
-          country.name.common
-            .toLowerCase()
-            .startsWith(searchQuery.toLowerCase())
+      combineLatestWith(
+        this.searchedService.valueChangeSearch,
+        this.searchedService.valueRegionSelect
+      ),
+      map(([countries, searchQuery, regionQuery]) =>
+        countries.filter(
+          (country) =>
+            country.name.common
+              .toLowerCase()
+              .startsWith(searchQuery.toLowerCase()) &&
+            country.region.includes(regionQuery)
         )
       )
     );
@@ -55,6 +60,4 @@ export class CountriesListComponent implements OnInit {
     this.pageIndex = $event.pageIndex;
     window.scroll(0, 0);
   }
-
-  handleSearch() {}
 }
