@@ -1,15 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Country } from '../../models/country.model';
-import { Countries } from '../../mock-countries';
 import { CountryDetailComponent } from './country-detail/country-detail.component';
 import { CommonModule } from '@angular/common';
 import { Observable, combineLatestWith, map } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { getAllCountries } from '../../../store/countries.actions';
-import {
-  getAllToSearch,
-  getCountriesLength,
-} from '../../../store/countries.selector';
+import { getAllToSearch } from '../../../store/countries.selector';
 import { setLoadingSpinner } from '../../../store/shared/shared.actions';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { Constants } from '../../constant';
@@ -30,7 +26,6 @@ import { PaginatorPipe } from '../../pipes/paginator.pipe';
 })
 export class CountriesListComponent implements OnInit {
   countries$!: Observable<Country[]>;
-  countriesLength$!: Observable<number>;
 
   pageSize = Constants.paginatorConstants.defaultPageSize;
   pageIndex = 0;
@@ -43,9 +38,8 @@ export class CountriesListComponent implements OnInit {
   ngOnInit(): void {
     this.store.dispatch(setLoadingSpinner({ status: true }));
     this.store.dispatch(getAllCountries({ independent: true }));
-    this.countriesLength$ = this.store.select(getCountriesLength);
     this.countries$ = this.store.select(getAllToSearch).pipe(
-      combineLatestWith(this.searchedService.searchQuery),
+      combineLatestWith(this.searchedService.valueChangeSearch),
       map(([countries, searchQuery]) =>
         countries.filter((country) =>
           country.name.common
