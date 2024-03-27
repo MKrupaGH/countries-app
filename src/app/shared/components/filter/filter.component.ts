@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
-import { MatSelectChange, MatSelectModule } from '@angular/material/select';
+import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { regions } from '../../constant';
+import { Constants } from '../../constant';
 import { CommonModule } from '@angular/common';
+import { SearchedService } from '../search/searched.service';
 
 @Component({
   selector: 'app-filter',
@@ -15,16 +16,14 @@ import { CommonModule } from '@angular/common';
     MatInputModule,
     FormsModule,
     CommonModule,
+    ReactiveFormsModule,
   ],
   templateUrl: './filter.component.html',
   styleUrl: './filter.component.scss',
 })
 export class FilterComponent {
-  regions: string[] = regions;
-  selectedRegion: string = '';
+  regions: string[] = Constants.filterConstants.regions;
+  searchForm = this.searchedService.FormSearch;
 
-  onSelectRegion(event: MatSelectChange) {
-    this.selectedRegion = event.value;
-    console.log(this.selectedRegion);
-  }
+  constructor(private searchedService: SearchedService) {}
 }
