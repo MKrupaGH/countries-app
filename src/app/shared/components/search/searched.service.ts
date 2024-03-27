@@ -9,10 +9,12 @@ import {
 
 enum Fields {
   SEARCH = 'search',
+  REGION = 'region',
 }
 
 interface FormType {
   [Fields.SEARCH]: FormControl<string>;
+  [Fields.REGION]: FormControl<string>;
 }
 
 @Injectable({
@@ -21,10 +23,10 @@ interface FormType {
 export class SearchedService {
   private searchForm = this.fb.group<FormType>({
     [Fields.SEARCH]: this.fb.control(''),
+    [Fields.REGION]: this.fb.control(''),
   });
 
   constructor(private fb: NonNullableFormBuilder) {}
-
 
   get FormSearch(): FormGroup<FormType> {
     return this.searchForm;
@@ -33,6 +35,16 @@ export class SearchedService {
   get valueChangeSearch(): Observable<string> {
     return this.searchForm
       .get('search')!
+      .valueChanges.pipe(
+        startWith(''),
+        debounceTime(250),
+        distinctUntilChanged()
+      );
+  }
+
+  get valueRegionSelect(): Observable<string>{
+    return this.searchForm
+      .get('region')!
       .valueChanges.pipe(
         startWith(''),
         debounceTime(250),
