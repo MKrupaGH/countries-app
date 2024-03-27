@@ -1,16 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import {
-  FormControl,
-  FormGroup,
-  FormsModule,
-  ReactiveFormsModule,
-} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { SearchedService } from './searched.service';
-import { tap } from 'rxjs';
 
 @Component({
   selector: 'app-search',
@@ -28,18 +22,7 @@ import { tap } from 'rxjs';
   templateUrl: './search.component.html',
   styleUrl: './search.component.scss',
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent {
   constructor(private searchedService: SearchedService) {}
-
-  searchForm = new FormGroup({
-    search: new FormControl(''),
-  });
-
-  ngOnInit(): void {
-    this.searchForm
-      .get('search')
-      ?.valueChanges.subscribe(
-        (search) => (this.searchedService.searchQuery = search!)
-      );
-  }
+  searchForm = this.searchedService.FormSearch;
 }
