@@ -1,18 +1,42 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { FormControl, FormGroup, NonNullableFormBuilder } from '@angular/forms';
+import {
+  Observable,
+  debounceTime,
+  distinctUntilChanged,
+  startWith,
+} from 'rxjs';
+
+enum Fields {
+  SEARCH = 'search',
+}
+
+interface FormType {
+  [Fields.SEARCH]: FormControl<string>;
+}
 
 @Injectable({
   providedIn: 'root',
 })
 export class SearchedService {
-  private searchQuery$: BehaviorSubject<string> = new BehaviorSubject('');
-  constructor() {}
+  private searchForm = this.fb.group<FormType>({
+    [Fields.SEARCH]: this.fb.control(''),
+  });
 
-  get searchQuery(): Observable<string> {
-    return this.searchQuery$.asObservable();
+  constructor(private fb: NonNullableFormBuilder) {}
+
+
+  get FormSearch(): FormGroup<FormType> {
+    return this.searchForm;
   }
 
-  set searchQuery(phrase: string) {
-    this.searchQuery$.next(phrase);
+  get valueChangeSearch(): Observable<string> {
+    return this.searchForm
+      .get('search')!
+      .valueChanges.pipe(
+        startWith(''),
+        debounceTime(250),
+        distinctUntilChanged()
+      );
   }
 }
