@@ -1,12 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Country } from '../../models/country.model';
 import { CountryDetailComponent } from './country-detail/country-detail.component';
 import { CommonModule } from '@angular/common';
-import { Observable, combineLatestWith, map } from 'rxjs';
+import { Observable, combineLatestWith, map, tap } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { getAllCountries } from '../../../store/countries.actions';
-import { getAllToSearch } from '../../../store/countries.selector';
-import { setLoadingSpinner } from '../../../store/shared/shared.actions';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { Constants } from '../../constant';
 import { SearchedService } from '../search/searched.service';
@@ -25,6 +22,8 @@ import { PaginatorPipe } from '../../pipes/paginator.pipe';
   styleUrl: './countries-list.component.scss',
 })
 export class CountriesListComponent implements OnInit {
+  @Input() countriesStored$!: Observable<Country[]>;
+
   countries$!: Observable<Country[]>;
 
   pageSize = Constants.paginatorConstants.defaultPageSize;
@@ -36,21 +35,20 @@ export class CountriesListComponent implements OnInit {
   constructor(private store: Store, private searchedService: SearchedService) {}
 
   ngOnInit(): void {
-    this.store.dispatch(setLoadingSpinner({ status: true }));
-    this.store.dispatch(getAllCountries({ independent: true }));
-    this.countries$ = this.store.select(getAllToSearch).pipe(
+    this.countries$ = this.countriesStored$.pipe(
       combineLatestWith(
         this.searchedService.valueChangeSearch,
         this.searchedService.valueRegionSelect
       ),
       map(([countries, searchQuery, regionQuery]) =>
-        countries.filter(
-          (country) =>
-            country.name.common
-              .toLowerCase()
-              .startsWith(searchQuery.toLowerCase()) &&
-            country.region.includes(regionQuery)
-        )
+        countries
+          .filter(
+            (country) =>
+              country.name.common
+                .toLowerCase()
+                .startsWith(searchQuery.toLowerCase()) &&
+              country.region.includes(regionQuery)
+          )
       )
     );
   }
