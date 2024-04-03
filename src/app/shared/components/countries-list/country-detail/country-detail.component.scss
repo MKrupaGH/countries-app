@@ -1,16 +1,23 @@
 .detail-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  //margin-bottom: 20px;
+  width: 300px;
+
+  mat-card {
+    display: grid;
+    grid-template-rows: 180px 100px 50px;
+    min-width: 300px !important;
+    background-color: white;
+    border-radius: 0.5em;
+    box-shadow: 0em 0em 1em rgb(200, 200, 200);
+  }
+
   .example-card {
     max-width: 200px;
-    position: relative;
 
     .img-card {
-      aspect-ratio: 22 / 12;
+      width: 300px;
+      height: 180px;
       object-fit: cover;
+      border-radius: 0.5em 0.5em 0 0;
     }
 
     .card-content {
