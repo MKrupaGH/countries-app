@@ -1,6 +1,54 @@
+import { CCA2 } from './models/code.model';
 import { Country } from './models/country.model';
 
+export const Codes: CCA2[] = [
+  { cca2: 'TC' },
+  { cca2: 'CY' },
+  { cca2: 'PL' },
+  { cca2: 'ER' },
+];
+
 export const Countries: Country[] = [
+  {
+    flags: {
+      png: 'https://flagcdn.com/w320/tc.png',
+      svg: 'https://flagcdn.com/tc.svg',
+      alt: '',
+    },
+    name: {
+      common: 'Turks and Caicos Islands',
+      official: 'Turks and Caicos Islands',
+      nativeName: {
+        eng: {
+          official: 'Turks and Caicos Islands',
+          common: 'Turks and Caicos Islands',
+        },
+      },
+    },
+    cca2: 'TC',
+    capital: ['Cockburn Town'],
+    region: 'Americas',
+  },
+  {
+    flags: {
+      png: 'https://flagcdn.com/w320/bm.png',
+      svg: 'https://flagcdn.com/bm.svg',
+      alt: '',
+    },
+    name: {
+      common: 'Bermuda',
+      official: 'Bermuda',
+      nativeName: {
+        eng: {
+          official: 'Bermuda',
+          common: 'Bermuda',
+        },
+      },
+    },
+    cca2: 'BM',
+    capital: ['Hamilton'],
+    region: 'Americas',
+  },
   {
     flags: {
       png: 'https://flagcdn.com/w320/cy.png',
