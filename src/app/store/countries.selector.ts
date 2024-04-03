@@ -10,3 +10,8 @@ export const getAllToSearch = createSelector(
   getCountriesState,
   (state) => state.countries
 );
+
+export const getCodes = createSelector(
+  getCountriesState,
+  (state) => state.favoriteCountries
+);

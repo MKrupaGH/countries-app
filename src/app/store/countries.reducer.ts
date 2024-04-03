@@ -7,7 +7,12 @@ export const _countriesReducer = createReducer(
     return {
       ...state,
       countries: action.countries,
-      countriesLength: action.countriesLength,
+    };
+  }),
+  on(Action.getFavoriteCountrySuccess, (state, action) => {
+    return {
+      ...state,
+      countries: action.countries,
     };
   })
 );

@@ -1,11 +1,13 @@
 import { Country } from '../shared/models/country.model';
+import { CCA2 } from '../shared/models/code.model';
+import { Codes } from '../shared/mock-countries';
 
 export interface CountriesState {
   countries: Country[];
-  countriesLength: number;
+  favoriteCountries: CCA2[];
 }
 
 export const initialState: CountriesState = {
   countries: [],
-  countriesLength: 0,
+  favoriteCountries: Codes,
 };
