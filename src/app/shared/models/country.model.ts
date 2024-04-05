@@ -4,6 +4,7 @@ export interface Country {
   cca2: string;
   capital: string[];
   region: string;
+  isLiked?: boolean;
 }
 
 interface Flags {
