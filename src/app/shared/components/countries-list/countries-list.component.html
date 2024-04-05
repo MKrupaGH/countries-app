@@ -1,7 +1,7 @@
 <ng-container *ngIf="countries$ | async as countries">
   <div class="list-layout">
-    <app-country-detail *ngFor="let country of (countries | paginator:pageSize:pageIndex+1)"
-      [country]="country"></app-country-detail>
+    <app-country-detail *ngFor="let country of (countries | paginator:pageSize:pageIndex+1)" [country]="country"
+      (onLike)="handleLikeClick($event)"></app-country-detail>
   </div>
   <mat-paginator (page)="handlePageEvent($event)" [length]="countries.length" [pageSizeOptions]="pageSizeOptions"
     [pageIndex]="pageIndex" [pageSize]="pageSize" [showFirstLastButtons]="showFirstLastButtons"

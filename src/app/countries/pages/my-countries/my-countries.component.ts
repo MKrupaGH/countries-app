@@ -1,29 +1,33 @@
 import { Component, OnInit } from '@angular/core';
 import { CountriesListComponent } from '../../../shared/components/countries-list/countries-list.component';
-
 import { SearchWindowComponent } from '../../components/search-window/search-window.component';
 import { Store } from '@ngrx/store';
-import { getAllCountries } from '../../../store/countries.actions';
+import { setLoadingSpinner } from '../../../store/shared/shared.actions';
+import { getFavoriteCountry } from '../../../store/countries.actions';
+import {
+  getAll,
+  getAllToSearch,
+  getCodes,
+} from '../../../store/countries.selector';
 import { Observable } from 'rxjs';
 import { Country } from '../../../shared/models/country.model';
-import { getAll, getAllToSearch } from '../../../store/countries.selector';
-import { setLoadingSpinner } from '../../../store/shared/shared.actions';
+import { Codes } from '../../../shared/mock-countries';
 
 @Component({
-  selector: 'app-countries-page',
+  selector: 'app-my-countries',
   standalone: true,
   imports: [SearchWindowComponent, CountriesListComponent],
-  templateUrl: './countries-page.component.html',
-  styleUrl: './countries-page.component.scss',
+  templateUrl: './my-countries.component.html',
+  styleUrl: './my-countries.component.scss',
 })
-export class CountriesPageComponent implements OnInit {
+export class MyCountriesComponent implements OnInit {
   countriesAll$!: Observable<Country[]>;
+  codes = Codes;
+  constructor(private store: Store) {}
 
-  constructor(private store: Store) { }
-  
   ngOnInit(): void {
     this.store.dispatch(setLoadingSpinner({ status: true }));
-    this.store.dispatch(getAllCountries({ independent: true }));
+    this.store.dispatch(getFavoriteCountry({ codes: this.codes }));
     this.countriesAll$ = this.store.select(getAll);
   }
 }

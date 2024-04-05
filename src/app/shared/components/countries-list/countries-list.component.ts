@@ -41,16 +41,19 @@ export class CountriesListComponent implements OnInit {
         this.searchedService.valueRegionSelect
       ),
       map(([countries, searchQuery, regionQuery]) =>
-        countries
-          .filter(
-            (country) =>
-              country.name.common
-                .toLowerCase()
-                .startsWith(searchQuery.toLowerCase()) &&
-              country.region.includes(regionQuery)
-          )
+        countries.filter(
+          (country) =>
+            country.name.common
+              .toLowerCase()
+              .startsWith(searchQuery.toLowerCase()) &&
+            country.region.includes(regionQuery)
+        )
       )
     );
+  }
+
+  handleLikeClick(code: string) {
+    console.log(code);
   }
 
   handlePageEvent($event: PageEvent) {
