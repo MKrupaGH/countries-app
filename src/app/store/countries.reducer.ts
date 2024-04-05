@@ -4,6 +4,7 @@ import * as Action from './countries.actions';
 export const _countriesReducer = createReducer(
   initialState,
   on(Action.getAllCountriesSuccess, (state, action) => {
+    
     return {
       ...state,
       countries: action.countries,

@@ -55,7 +55,7 @@ export class CountriesEffects {
       withLatestFrom(this.store.select(getCodes)),
       mergeMap(([action, codes]) => {
         const requests = codes.map((code) =>
-          this.countriesService.getCountryByCode(code.cca2)
+          this.countriesService.getCountryByCode(code)
         );
         return forkJoin(requests).pipe(
           map((countries) => {

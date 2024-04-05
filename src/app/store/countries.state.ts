@@ -4,7 +4,7 @@ import { Codes } from '../shared/mock-countries';
 
 export interface CountriesState {
   countries: Country[];
-  favoriteCountries: CCA2[];
+  favoriteCountries: string[];
 }
 
 export const initialState: CountriesState = {

@@ -29,7 +29,7 @@ export const getAllCountriesFail = createAction(
 
 export const getFavoriteCountry = createAction(
   GET_FAVORITE_COUNTRY,
-  props<{ codes: CCA2[] }>()
+  props<{ codes: string[] }>()
 );
 export const getFavoriteCountrySuccess = createAction(
   GET_FAVORITE_SUCCESS,
@@ -39,10 +39,3 @@ export const getFavoriteCountryFail = createAction(
   GET_FAVORITE_FAIL,
   httpErrorProps
 );
-
-// export const addCountry = createAction(
-//   ADD_FAVORITE_COUNTRY,
-//   props<{ code: CCA2 }>
-// );
-
-// export const addCountrySuccess = createAction(ADD_FAVORITE_SUCCESS, props<{}>);
