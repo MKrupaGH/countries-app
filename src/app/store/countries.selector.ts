@@ -1,7 +1,6 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { CountriesState } from './countries.state';
 import { Country } from '../shared/models/country.model';
-import { CCA2 } from '../shared/models/code.model';
 
 export const COUNTRIES_STATE_NAME = 'countries';
 

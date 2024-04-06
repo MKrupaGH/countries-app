@@ -14,6 +14,18 @@ export const GET_FAVORITE_COUNTRY = '[countries page] get country code';
 export const GET_FAVORITE_SUCCESS = '[countries page] get country code success';
 export const GET_FAVORITE_FAIL = '[countries page] get country code fail';
 
+export const ADD_FAVORITE_COUNTRY = '[countries page] add favorite country';
+export const ADD_FAVORITE_SUCCESS =
+  '[countries page] add favorite country success';
+export const ADD_FAVORITE_FAIL = '[countries page] add favorite country fail';
+
+export const DELETE_FAVORITE_COUNTRY =
+  '[countries page] delete favorite country';
+export const DELETE_FAVORITE_SUCCESS =
+  '[countries page] delete favorite country success';
+export const DELETE_FAVORITE_FAIL =
+  '[countries page] delete favorite country fail';
+
 export const getAllCountries = createAction(
   GET_ALL_COUNTRIES,
   props<{ independent: boolean }>()
@@ -37,5 +49,35 @@ export const getFavoriteCountrySuccess = createAction(
 );
 export const getFavoriteCountryFail = createAction(
   GET_FAVORITE_FAIL,
+  httpErrorProps
+);
+
+export const addFavoriteCountry = createAction(
+  ADD_FAVORITE_COUNTRY,
+  props<{ code: string }>()
+);
+
+export const addFavoriteCountrySuccess = createAction(
+  ADD_FAVORITE_SUCCESS,
+  props<{ code: string }>()
+);
+
+export const addFavoriteCountryFail = createAction(
+  ADD_FAVORITE_FAIL,
+  httpErrorProps
+);
+
+export const deleteFavoriteCountry = createAction(
+  DELETE_FAVORITE_COUNTRY,
+  props<{ code: string }>()
+);
+
+export const deleteFavoriteCountrySuccess = createAction(
+  DELETE_FAVORITE_SUCCESS,
+  props<{ code: string }>()
+);
+
+export const deleteFavoriteCountryFail = createAction(
+  DELETE_FAVORITE_FAIL,
   httpErrorProps
 );
