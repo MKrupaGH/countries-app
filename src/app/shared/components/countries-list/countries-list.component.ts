@@ -8,6 +8,12 @@ import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { Constants } from '../../constant';
 import { SearchedService } from '../search/searched.service';
 import { PaginatorPipe } from '../../pipes/paginator.pipe';
+import {
+  addFavoriteCountry,
+  deleteFavoriteCountry,
+} from '../../../store/countries.actions';
+import { Like } from '../../models/like.model';
+import { AppState } from '../../../store/app.state';
 
 @Component({
   selector: 'app-countries-list',
@@ -32,7 +38,10 @@ export class CountriesListComponent implements OnInit {
   showPageSizeOptions = true;
   showFirstLastButtons = true;
 
-  constructor(private store: Store, private searchedService: SearchedService) {}
+  constructor(
+    private store: Store<AppState>,
+    private searchedService: SearchedService
+  ) {}
 
   ngOnInit(): void {
     this.countries$ = this.countriesStored$.pipe(
@@ -52,8 +61,10 @@ export class CountriesListComponent implements OnInit {
     );
   }
 
-  handleLikeClick(code: string) {
-    console.log(code);
+  handleLikeClick(params: Like) {
+    !params.isLiked
+      ? this.store.dispatch(addFavoriteCountry({ code: params.code }))
+      : this.store.dispatch(deleteFavoriteCountry({ code: params.code }));
   }
 
   handlePageEvent($event: PageEvent) {
