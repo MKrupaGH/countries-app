@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 import { Country } from '../../../shared/models/country.model';
 import { getAll, getAllToSearch } from '../../../store/countries.selector';
 import { setLoadingSpinner } from '../../../store/shared/shared.actions';
+import { AppState } from '../../../store/app.state';
 
 @Component({
   selector: 'app-countries-page',
@@ -19,8 +20,8 @@ import { setLoadingSpinner } from '../../../store/shared/shared.actions';
 export class CountriesPageComponent implements OnInit {
   countriesAll$!: Observable<Country[]>;
 
-  constructor(private store: Store) { }
-  
+  constructor(private store: Store<AppState>) {}
+
   ngOnInit(): void {
     this.store.dispatch(setLoadingSpinner({ status: true }));
     this.store.dispatch(getAllCountries({ independent: true }));

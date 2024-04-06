@@ -12,6 +12,7 @@ import {
 import { Observable } from 'rxjs';
 import { Country } from '../../../shared/models/country.model';
 import { Codes } from '../../../shared/mock-countries';
+import { AppState } from '../../../store/app.state';
 
 @Component({
   selector: 'app-my-countries',
@@ -23,7 +24,7 @@ import { Codes } from '../../../shared/mock-countries';
 export class MyCountriesComponent implements OnInit {
   countriesAll$!: Observable<Country[]>;
   codes = Codes;
-  constructor(private store: Store) {}
+  constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
     this.store.dispatch(setLoadingSpinner({ status: true }));

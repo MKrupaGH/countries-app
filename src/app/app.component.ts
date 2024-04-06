@@ -14,6 +14,7 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { getErrorMessage, getLoading } from './store/shared/shared.selector';
 import { SpinnerComponent } from './shared/components/spinner/spinner.component';
+import { AppState } from './store/app.state';
 
 @Component({
   selector: 'app-root',
@@ -31,7 +32,7 @@ import { SpinnerComponent } from './shared/components/spinner/spinner.component'
 export class AppComponent implements AfterViewChecked {
   showLoading!: Observable<boolean>;
   errorMessage!: Observable<string>;
-  constructor(private store: Store, private cd: ChangeDetectorRef) {}
+  constructor(private store: Store<AppState>, private cd: ChangeDetectorRef) {}
 
   ngAfterViewChecked(): void {
     this.showLoading = this.store.select(getLoading);
