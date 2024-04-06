@@ -7,8 +7,9 @@
       <h3>Region: {{country.region}}</h3>
     </mat-card-content>
     <mat-card-actions class="card-actions">
-      <button (click)="onClick(country.cca2)" mat-button><mat-icon class="icon" [ngClass]="{'red' : country.isLiked}"
-          aria-hidden="false" aria-label="Example home icon" fontIcon="favorite_border"></mat-icon></button>
+      <button (click)="onClick(country.cca2, country.isLiked)" mat-button><mat-icon class="icon"
+          [ngClass]="{'red' : country.isLiked}" aria-hidden="false" aria-label="Example home icon"
+          fontIcon="favorite_border"></mat-icon></button>
     </mat-card-actions>
   </mat-card>
 </div>

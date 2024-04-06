@@ -5,6 +5,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { CCA2 } from '../../../models/code.model';
+import { Like } from '../../../models/like.model';
 @Component({
   selector: 'app-country-detail',
   standalone: true,
@@ -14,9 +15,9 @@ import { CCA2 } from '../../../models/code.model';
 })
 export class CountryDetailComponent {
   @Input() country!: Country;
-  @Output() onLike: EventEmitter<string> = new EventEmitter();
+  @Output() onLike: EventEmitter<Like> = new EventEmitter();
 
-  onClick(code: string) {
-    this.onLike.emit(code);
+  onClick(code: string, isLiked?: boolean) {
+    this.onLike.emit({ code, isLiked });
   }
 }
