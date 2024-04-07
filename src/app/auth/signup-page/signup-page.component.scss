@@ -1,0 +1,14 @@
+.container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  .form-container {
+    position: absolute;
+    top: 20%;
+    min-width: 300px;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+  }
+}
