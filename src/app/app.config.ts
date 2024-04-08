@@ -12,6 +12,7 @@ import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { CountriesEffects } from './store/countries.effects';
 import { _countriesReducer } from './store/countries.reducer';
 import { _sharedReducer } from './store/shared/shared.reducer';
+import { AuthEffects } from './auth/state/auth.effects';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -21,6 +22,6 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     provideHttpClient(withFetch()),
     provideStoreDevtools({ maxAge: 25, logOnly: !isDevMode() }),
-    provideEffects([CountriesEffects]),
+    provideEffects([CountriesEffects, AuthEffects]),
   ],
 };
