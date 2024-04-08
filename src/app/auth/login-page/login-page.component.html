@@ -1,17 +1,21 @@
 <div class="container">
-  <div class="form-container">
-    <mat-form-field>
+  <form class="form-container" [formGroup]="logForm" (ngSubmit)="onLogin()">
+    <h1>Login</h1>
+    <hr>
+    <mat-form-field a-form>
       <mat-label>Enter your email</mat-label>
-      <input matInput placeholder="pat@example.com" required>
+      <input matInput formControlName="email" placeholder="pat@example.com" required>
+      <div>{{emailValidator()}}</div>
     </mat-form-field>
     <mat-form-field>
       <mat-label>Enter your password</mat-label>
-      <input matInput [type]="hide ? 'password' : 'text'" required>
-      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+      <input matInput formControlName="password" [type]=" hide ? 'password' : 'text'" required>
+      <button mat-icon-button matSuffix (click)=" hide=!hide" [attr.aria-label]="'Hide password'"
         [attr.aria-pressed]="hide">
         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
       </button>
+      <div>{{passwordValidator()}}</div>
     </mat-form-field>
-    <button mat-raised-button color="primary">Login</button>
-  </div>
+    <button type="submit" mat-raised-button color="primary" [disabled]="!logForm.valid">Login</button>
+  </form>
 </div>
