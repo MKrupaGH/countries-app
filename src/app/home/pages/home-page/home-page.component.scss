@@ -8,12 +8,11 @@
     z-index: 1;
     img {
       z-index: 99;
-      min-width: 200%;
-      height: 200%;
+      height: 100vh;
       object-fit: cover;
       position: absolute;
-      left: -120%;
-      top: -50%;
+      left: -60%;
+      top: -56px;
       animation-duration: 3s;
       animation-name: slide-from-left;
     }
@@ -47,7 +46,7 @@
     opacity: 0.1;
   }
   to {
-    left: -120%;
+    left: -60%;
     transform: rotate(0deg);
     opacity: 1;
   }
