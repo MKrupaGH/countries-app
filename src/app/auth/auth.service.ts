@@ -5,6 +5,12 @@ import {
   NonNullableFormBuilder,
   Validators,
 } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import * as Action from './state/auth.actions';
+import { setLoadingSpinner } from '../store/shared/shared.actions';
+import { Observable, of } from 'rxjs';
+import { AppState } from '../store/app.state';
+
 enum Fields {
   EMAIL = 'email',
   PASSWORD = 'password',
@@ -30,9 +36,12 @@ export class AuthService {
     ]),
   });
 
-  constructor(private fb: NonNullableFormBuilder) {}
+  constructor(
+    private fb: NonNullableFormBuilder,
+    private store: Store<AppState>
+  ) {}
 
-  get log(): FormGroup<FormType> {
+  get log(): FormGroup {
     return this.logForm;
   }
 
