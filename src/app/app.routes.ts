@@ -1,9 +1,11 @@
 import { Routes } from '@angular/router';
 import { HomePageComponent } from './home/pages/home-page/home-page.component';
-import { CountriesPageComponent } from './countries/pages/countries-page/countries-page.component';
+
 import { LoginPageComponent } from './auth/login-page/login-page.component';
 import { SignupPageComponent } from './auth/signup-page/signup-page.component';
 import { MyCountriesComponent } from './countries/pages/my-countries/my-countries.component';
+import { CountriesPageComponent } from './countries/pages/countries-page/countries-page.component';
+import { AuthGuard } from './auth/services/auth.guard';
 
 export const routes: Routes = [
   {
@@ -23,6 +25,7 @@ export const routes: Routes = [
   {
     path: 'my-countries',
     component: MyCountriesComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'auth',
