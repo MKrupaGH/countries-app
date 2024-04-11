@@ -30,13 +30,13 @@ import { AppState } from './store/app.state';
   styleUrl: './app.component.scss',
 })
 export class AppComponent implements AfterViewChecked {
-  showLoading!: Observable<boolean>;
-  errorMessage!: Observable<string>;
+  showLoading$!: Observable<boolean>;
+  errorMessage$!: Observable<string>;
   constructor(private store: Store<AppState>, private cd: ChangeDetectorRef) {}
 
   ngAfterViewChecked(): void {
-    this.showLoading = this.store.select(getLoading);
+    this.showLoading$ = this.store.select(getLoading);
+    this.errorMessage$ = this.store.select(getErrorMessage);
     this.cd.detectChanges();
-    //this.errorMessage = this.store.select(getErrorMessage);
   }
 }
