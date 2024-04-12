@@ -40,3 +40,5 @@ export const signUpUserSuccess = createAction(
 );
 
 export const signUpUserFail = createAction(SIGN_UP_USER_FAIL);
+
+export const logout = createAction(LOGOUT);
