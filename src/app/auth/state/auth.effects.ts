@@ -29,6 +29,7 @@ export class AuthEffects {
             this.store.dispatch(setErrorMessage({ message: '' }));
             this.store.dispatch(setLoadingSpinner({ status: false }));
             const user = this.authService.formatUser(data);
+            this.authService.setUser(user);
             return Action.loginUserSuccess({ user });
           }),
           catchError((err) => {
@@ -67,6 +68,19 @@ export class AuthEffects {
     );
   });
 
+  autoLogin$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(Action.autoLogin),
+      map((action) => {
+        const user = this.authService.getUser();
+
+        return user
+          ? Action.loginUserSuccess({ user })
+          : Action.loginUserFail();
+      })
+    );
+  });
+
   redirect$ = createEffect(
     () => {
       return this.actions$.pipe(
@@ -79,4 +93,14 @@ export class AuthEffects {
     },
     { dispatch: false }
   );
+
+  logout$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(Action.logout),
+      map((action) => {
+        this.authService.deleteUser();
+        return Action.logoutSuccess();
+      })
+    );
+  });
 }

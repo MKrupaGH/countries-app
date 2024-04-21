@@ -10,6 +10,11 @@ const SIGN_UP_USER_SUCCESS = '[signup page] signup user success';
 const SIGN_UP_USER_FAIL = '[signup page] signup user fail';
 
 const LOGOUT = '[auth page] logout user ';
+const LOGOUT_SUCCESS = '[auth page] logout user success';
+
+const AUTO_LOGIN_USER = '[login page] auto login';
+const AUTO_LOGIN_SUCCESS = '[login page] auto login success';
+const AUTO_LOGIN_FAIL = '[login page] auto login fail';
 
 export const loginUser = createAction(
   LOGIN_USER,
@@ -42,3 +47,11 @@ export const signUpUserSuccess = createAction(
 export const signUpUserFail = createAction(SIGN_UP_USER_FAIL);
 
 export const logout = createAction(LOGOUT);
+export const logoutSuccess = createAction(LOGOUT_SUCCESS);
+
+export const autoLogin = createAction(AUTO_LOGIN_USER);
+export const autoLoginSuccess = createAction(
+  AUTO_LOGIN_SUCCESS,
+  props<{ user: User }>()
+);
+export const autoLoginFail = createAction(AUTO_LOGIN_FAIL);
